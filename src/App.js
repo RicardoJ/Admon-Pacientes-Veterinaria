@@ -2,18 +2,19 @@ import React, { Component } from "react";
 import "./bootstrap.min.css";
 import Header from "./components/Header";
 import NewDate from "./components/NewDate";
+import ListAppointments from "./components/ListAppointments";
 
 class App extends Component {
   state = {
 
-    appointment :[]
+    appointments :[]
 
   };
 
   createNewDate = data =>{
-      const appointment = [...this.state.appointment, data];
+      const appointments = [...this.state.appointments, data];
 
-      this.setState({appointment})
+      this.setState({appointments})
   }
   render() {
     return (
@@ -24,6 +25,11 @@ class App extends Component {
           <div className="col-md-10 mx-auto">
             <NewDate 
             createNewDate = {this.createNewDate}
+            />
+          </div>
+          <div className =  "mt-5 col-md-10 mx-auto">
+            <ListAppointments
+            appointments = {this.state.appointments}
             />
           </div>
         </div>
