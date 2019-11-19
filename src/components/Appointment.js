@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Appointment = ({appointment}) => {
+const Appointment = ({appointment, deleteDate}) => {
     return(
    <div className = "media mt-3">
        <div className = "media-body">
@@ -11,6 +11,11 @@ const Appointment = ({appointment}) => {
            <p className = "card-text"><span>Hora: </span>{appointment.hour}</p>
            <p className = "card-text"><span>Síntomas: </span>{appointment.symptoms}</p>
            <p className = "card-text">{appointment.symptoms}</p>
+
+           <button
+           className = "brn btn-danger"
+           onClick = {()=> deleteDate(appointment.id)}
+           >Borrar &times;</button>
        </div>
    </div>
    );

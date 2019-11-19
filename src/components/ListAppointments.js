@@ -1,6 +1,6 @@
 import React from 'react';
 import Appointment  from './Appointment';
-const ListAppointment = ({appointments}) => {
+const ListAppointment = ({appointments, deleteDate}) => {
     return ( 
         <div className = "card mt-2 py-5">
             <div className = "card-body">
@@ -10,6 +10,7 @@ const ListAppointment = ({appointments}) => {
                         <Appointment
                             key = {appointment.id}
                             appointment = {appointment}
+                            deleteDate = {deleteDate}
                         />
                     ))}
                 </div>
