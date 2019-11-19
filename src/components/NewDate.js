@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import uuid from 'uuid';
-class NewDate extends Component {
-  state = {
+
+const stateMain ={
     appointment : {
-      pet: "",
-      owner: "",
-      date: "",
-      hour: "",
-      symptoms: ""
-    },
-    error: false
-  };
+        pet: "",
+        owner: "",
+        date: "",
+        hour: "",
+        symptoms: ""
+      },
+      error: false
+
+}
+
+class NewDate extends Component {
+  state = {...stateMain};
 
   handleChange = e => {
     this.setState({
@@ -39,9 +43,17 @@ class NewDate extends Component {
       });
       return;
     }
+
+    //se genera objeto con los datos
     const newDate = {...this.state.appointment };
     newDate.id = uuid();
+    //agregando la cita al state de App
     this.props.createNewDate(newDate);
+
+    //se coloca en el state el stateMain
+    this.setState({
+        ...stateMain
+    })
 
   };
   render() {
