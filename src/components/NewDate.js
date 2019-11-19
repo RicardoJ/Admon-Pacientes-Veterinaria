@@ -1,21 +1,21 @@
 import React, { Component } from "react";
-
+import uuid from 'uuid';
 class NewDate extends Component {
   state = {
-    cita: {
-      mascota: "",
-      propetario: "",
-      fecha: "",
-      hora: "",
-      sintomas: ""
+    appointment : {
+      pet: "",
+      owner: "",
+      date: "",
+      hour: "",
+      symptoms: ""
     },
     error: false
   };
 
   handleChange = e => {
     this.setState({
-      cita: {
-        ...this.state.cita,
+        appointment : {
+        ...this.state.appointment,
         //[saber el formulario que se llena] : el valor ingresado
         [e.target.name]: e.target.value
       }
@@ -25,20 +25,24 @@ class NewDate extends Component {
   handleSubmit = e => {
     e.preventDefault();
     //extraer valores del state
-    const { mascota, propetario, fecha, hora, sintomas } = this.state.cita;
+    const { pet, owner, date, hour, symptoms } = this.state.appointment;
 
     if (
-      mascota === "" ||
-      propetario === "" ||
-      fecha === "" ||
-      hora === "" ||
-      sintomas === ""
+      pet === "" ||
+      owner === "" ||
+      date === "" ||
+      hour === "" ||
+      symptoms === ""
     ) {
       this.setState({
         error: true
       });
       return;
     }
+    const newDate = {...this.state.appointment };
+    newDate.id = uuid();
+    this.props.createNewDate(newDate);
+
   };
   render() {
     return (
@@ -55,9 +59,9 @@ class NewDate extends Component {
                   type="text"
                   className="form-control"
                   placeholder="Nombre mascota"
-                  name="mascota"
+                  name="pet"
                   onChange={this.handleChange}
-                  value={this.state.cita.mascota}
+                  value={this.state.appointment.pet}
                 />
               </div>
             </div>
@@ -72,9 +76,9 @@ class NewDate extends Component {
                   type="text"
                   className="form-control"
                   placeholder="Nombre dueño de la mascota"
-                  name="propetario"
+                  name="owner"
                   onChange={this.handleChange}
-                  value={this.state.cita.propetario}
+                  value={this.state.appointment.owner}
                 />
               </div>
             </div>
@@ -86,9 +90,9 @@ class NewDate extends Component {
                 <input
                   type="date"
                   className="form-control"
-                  name="fecha"
+                  name="date"
                   onChange={this.handleChange}
-                  value={this.state.cita.fecha}
+                  value={this.state.appointment.date}
                 />
               </div>
 
@@ -97,9 +101,9 @@ class NewDate extends Component {
                 <input
                   type="time"
                   className="form-control"
-                  name="hora"
+                  name="hour"
                   onChange={this.handleChange}
-                  value={this.state.cita.hora}
+                  value={this.state.appointment.hour}
                 />
               </div>
             </div>
@@ -113,9 +117,9 @@ class NewDate extends Component {
                 <textarea
                   className="form-control"
                   placeholder="Síntomas que presenta la mascota"
-                  name="sintomas"
+                  name="symptoms"
                   onChange={this.handleChange}
-                  value={this.state.cita.sintomas}
+                  value={this.state.appointment.symptoms}
                 ></textarea>
               </div>
             </div>

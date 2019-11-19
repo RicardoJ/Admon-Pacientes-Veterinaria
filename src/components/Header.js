@@ -1,8 +1,8 @@
 import React from "react";
 
-const Header = ({titulo}) => (
+const Header = ({titleHeader}) => (
   <header>
-    <h1 className= "text-center">{titulo}</h1>
+    <h1 className= "text-center">{titleHeader}</h1>
   </header>
 );
 
