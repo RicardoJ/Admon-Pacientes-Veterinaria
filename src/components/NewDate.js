@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import uuid from 'uuid';
+import PropTypes from 'prop-types';
 
 const stateMain ={
     appointment : {
@@ -153,5 +154,7 @@ class NewDate extends Component {
     );
   }
 }
-
+NewDate.propTypes = {
+    createNewDate : PropTypes.func.isRequired
+}
 export default NewDate;
