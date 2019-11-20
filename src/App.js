@@ -10,6 +10,20 @@ class App extends Component {
     appointments :[]
 
   };
+//aplicacion carga
+  componentDidMount(){
+    const appointmentsLS = localStorage.getItem('appointments');
+    if (appointmentsLS) {
+      this.setState({
+        appointments : JSON.parse(appointmentsLS)
+      })
+    }
+  }
+
+  //eliminamos o agregamos nueva cita
+  componentDidUpdate(){
+    localStorage.setItem('appointments', JSON.stringify(this.state.appointments));
+  }
 
   createNewDate = data =>{
       const appointments = [...this.state.appointments, data];
